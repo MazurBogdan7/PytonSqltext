@@ -26,6 +26,8 @@ gpt.add_example(Example('H naught of t', 'H_0(t)'))
 gpt.add_example(Example('f of n equals 1 over (b-a) if n is 0 otherwise 5',
                         'f(n) = \\begin{cases} 1/(b-a) &\\mbox{if } n \\equiv 0 \\\ # 5 \\end{cases}'))
 
+
+
 # Define UI configuration
 config = UIConfig(description="Text to equation",
                   button_text="Translate",

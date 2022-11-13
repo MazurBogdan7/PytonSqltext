@@ -11,6 +11,8 @@ const EXAMPLE_API_URL = "/examples";
 
 const DEBOUNCE_INPUT = 250;
 
+let AIQuery = "";
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -24,7 +26,7 @@ class App extends React.Component {
     };
     // Bind the event handlers
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    this.AIGuessHandleClick = this.AIGuessHandleClick.bind(this);
   }
 
   componentDidMount() {
@@ -49,7 +51,7 @@ class App extends React.Component {
         }
       );
     const load = document.getElementById("loading");
-    load.style.visibility = "visible";
+    load.style.visibility = "hidden";
   }
 
   updateExample(id, body) {
@@ -87,18 +89,45 @@ class App extends React.Component {
     this.setState({ input: e.target.value });
   }
 
-  handleClick(e) {
+  AIGuessHandleClick(e) {
     e.preventDefault();
     const load = document.getElementById("loading");
+    const verifyButton = document.getElementById("verifyButton");
     load.style.visibility = "visible";
     let body = {
       prompt: this.state.input,
     };
     axios.post(TRANSLATE_API_URL, body).then(({ data: { text } }) => {
       this.setState({ output: text });
+      AIQuery = text
       load.style.visibility = "hidden";
-    });
+      verifyButton.disabled = false;
+    })
   }
+
+  verifyQueryHandleClick(e) {
+    e.preventDefault();
+    const verifyButton = document.getElementById("verifyButton");
+    
+    const sql = require('mssql')
+    
+    const config = {
+      user: '',
+      password: '',
+      server: 'DESKTOP-531439T\EXZELLOW',
+      database: 'DataSet',
+      port: 1433
+    }
+
+    let sqlRequest = new sql.Request()
+    let sqlQuery = AIQuery
+
+    sqlRequest.query(sqlQuery, function(err, data) {
+      if (err) {}
+        sql.close()
+    })
+  }
+
 
   render() {
     const showExampleForm = this.state.showExampleForm;
@@ -116,7 +145,7 @@ class App extends React.Component {
               width: "50%",
             }}
           >
-            <Form onSubmit={this.handleClick}>
+            <Form onSubmit={this.AIGuessHandleClick}>
               <Form.Group controlId="formBasicEmail">
                 {showExampleForm && (
                   <div>
@@ -211,6 +240,7 @@ class App extends React.Component {
                 <span class="sr-only">Loading...</span>
               </div>
             </Form>
+            <Form onSubmit={this.verifyQueryHandleClick}>
             <div
               style={{
                 textAlign: "center",
@@ -220,6 +250,20 @@ class App extends React.Component {
             >
               {this.state.output}
             </div>
+            <Button id="verifyButton" variant="success" type="submit" disabled>
+                {this.state.buttonText}
+            </Button>
+            <div
+              style={{
+                textAlign: "center",
+                margin: "20px",
+                fontSize: "18pt",
+              }}
+            >
+              {this.state.output}
+            </div>
+            </Form>
+            
           </div>
         </body>
       </div>

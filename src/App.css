@@ -38,5 +38,9 @@
 }
 
 #loading {
-  margin-left: 5px;
+  margin-left: 20px;
+}
+
+#verifyButton {
+  margin-left: 20px;
 }
