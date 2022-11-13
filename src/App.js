@@ -105,7 +105,7 @@ class App extends React.Component {
     })
   }
 
-  /*verifyQueryHandleClick(e) {
+  /*  verifyQueryHandleClick(e) {
     e.preventDefault();
     const verifyButton = document.getElementById("verifyButton");
     
@@ -130,8 +130,8 @@ class App extends React.Component {
         
     })
     
-  }
-*/
+  }*/
+
 
   render() {
     const showExampleForm = this.state.showExampleForm;

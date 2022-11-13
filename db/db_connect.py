@@ -1,4 +1,3 @@
-
 import pyodbc
 import eel
 eel.init('web')
@@ -21,5 +20,4 @@ def send_query(query):
     return result
 
 
-query = "select Top 10 * from sport"
-send_query(query)
+
