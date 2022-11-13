@@ -105,7 +105,7 @@ class App extends React.Component {
     })
   }
 
-  verifyQueryHandleClick(e) {
+  /*verifyQueryHandleClick(e) {
     e.preventDefault();
     const verifyButton = document.getElementById("verifyButton");
     
@@ -114,20 +114,24 @@ class App extends React.Component {
     const config = {
       user: '',
       password: '',
-      server: 'DESKTOP-531439T\EXZELLOW',
+      server: 'DESKTOP-M56JFP4',
       database: 'DataSet',
       port: 1433
     }
 
     let sqlRequest = new sql.Request()
-    let sqlQuery = AIQuery
-
+    let sqlQuery = AIQuery;
+    
+    
+    
     sqlRequest.query(sqlQuery, function(err, data) {
       if (err) {}
         sql.close()
+        
     })
+    
   }
-
+*/
 
   render() {
     const showExampleForm = this.state.showExampleForm;
