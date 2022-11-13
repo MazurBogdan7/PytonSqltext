@@ -16,7 +16,6 @@ from .ui_config import UIConfig
 CONFIG_VAR = "OPENAI_CONFIG"
 KEY_NAME = os.getenv('OPENAI_KEY')
 
-
 def demo_web_app(gpt, config=UIConfig()):
     """Creates Flask app to serve the React app."""
     app = Flask(__name__)
